@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="top d-flex justify-content-between">
+        <h1 class="d-inline-block ">Pet Shelter</h1>
+        <a [routerLink]="['/pets']">Home</a>
+    </div>
+    <div class="main">
+        <h6>Details about {{pet.name}}</h6>
+        <div class="row">
+            <div class="col">Pet type</div>
+            <div class="col">{{pet.type}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Pet Description</div>
+            <div class="col">{{pet.description}}</div>
+        </div>
+        <div class="row">
+            <div class="col">Skills</div>
+            <div class="col">
+                <p>{{pet.skill1}}</p>
+                <p>{{pet.skill2}}</p>
+                <p>{{pet.skill3}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">Likes</div>
+            <div class="col">{{pet.likes}}</div>
+        </div>
+
+        <div class="btn-group" role="group">
+
+            <button *ngIf="!clicked" (click)="likePet(pet._id)"  type="button" name="like-btn"class="btn btn-success mr-5">Like this pet</button>
+            <button *ngIf="clicked" type="button" name="like-btn-disabled"class="btn btn-success mr-5 disabled">Like this pet</button>
+            <!-- <button *ngIf="!name.valid" type="button" class="btn btn-primary mr-3 disabled">Submit</button> -->
+
+            <button (click)="deletePet(pet._id)"  type="button" class="btn btn-primary">Adopt this pet</button>
+        </div>
+    </div>
+</div>

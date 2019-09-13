@@ -1,0 +1,77 @@
+<div class="container">
+    <p>Add a new pet:</p>
+    <div class="row">
+        <div class="col-7 p-0">
+            <form>
+                <div class="form-group">
+                    <!-- <p> {{ newAuthor | json }} </p> -->
+                    <label for="pet_name">Pet Name:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_name" placeholder="Name" name="name"
+                        [(ngModel)]="newPet.name" required minlength="3" #name="ngModel">
+                    <div *ngFor="let pet of allPets">
+                        <div *ngIf="pet.name == newPet.name">
+                            <span class="text-danger">Name is already taken!</span>
+                        </div>
+                    </div>
+                    <span *ngIf="!name.pristine && name.errors" class="d-inline-block text-danger">Name is too
+                        short</span>
+                </div>
+                <div class="form-group">
+                    <!-- <p> {{ newPet | json }} </p> -->
+                    <label for="pet_type">Pet Type:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_type" placeholder="Type" name="type"
+                        [(ngModel)]="newPet.type" required minlength="3" #type="ngModel">
+                    <span *ngIf="!type.pristine && type.errors" class="d-inline-block text-danger">Type is too
+                        short</span>
+
+                </div>
+                <div class="form-group">
+                    <!-- <p> {{ newAuthor | json }} </p> -->
+                    <label for="pet_description">Pet Description:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_description"
+                        placeholder="Description" name="description" [(ngModel)]="newPet.description" required
+                        minlength="3" #description="ngModel">
+                    <span *ngIf="!description.pristine && description.errors"
+                        class="d-inline-block text-danger">Description is too short</span>
+
+                </div>
+                <label for="skills">Pet Skills (optional)</label>
+                <div class="form-group row" id="skills">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 1</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="skill1" placeholder="Skill 1"
+                            [(ngModel)]="newPet.skill1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 2</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="skill1" placeholder="Skill 2"
+                            [(ngModel)]="newPet.skill2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 3</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="skill1" placeholder="Skill 3"
+                            [(ngModel)]="newPet.skill3">
+                    </div>
+                </div>
+
+                <div class="btn-group" role="group">
+
+                    <button
+                        *ngIf="name.valid && type.valid && description.valid && !name.pristine && !type.pristine && !description.pristine"
+                        (click)="addPet()" [routerLink]="['']" type="submit"
+                        class="btn btn-primary d-inline-block mr-3">Submit</button>
+                    <button
+                        *ngIf="!name.valid || !type.valid || !description.valid || name.pristine || type.pristine || description.pristine"
+                        type="button" class="btn btn-primary mr-3 disabled">Submit</button>
+                    <a [routerLink]="['']"><button class="d-inline-block btn btn-danger align-top">Cancel</button> </a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>

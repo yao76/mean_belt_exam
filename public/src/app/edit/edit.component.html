@@ -1,0 +1,72 @@
+<div class="container">
+    <h1>Favorite Authors</h1>
+    <p>Edit a new pet:</p>
+    <div class="row">
+        <div class="col-7">
+            <form>
+                <div class="form-group">
+
+                    <label for="pet_name">Pet Name:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_name" placeholder="Name" name="name"
+                        [(ngModel)]="editPet.name" required minlength="3" #name="ngModel">
+                    <span *ngIf="!name.pristine && name.errors" class="d-inline-block text-danger">Name is too
+                        short</span>
+
+                </div>
+                <div class="form-group">
+                    <!-- <p> {{ newAuthor | json }} </p> -->
+                    <label for="pet_type">Pet Type:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_type" placeholder="Type" name="type"
+                        [(ngModel)]="editPet.type" required minlength="3" #type="ngModel">
+                    <span *ngIf="!type.pristine && type.errors" class="d-inline-block text-danger">Type is too
+                        short</span>
+
+                </div>
+                <div class="form-group">
+                    <!-- <p> {{ newAuthor | json }} </p> -->
+                    <label for="pet_description">Pet Description:</label>
+                    <input type="text" class="form-control d-inline-block" id="pet_description"
+                        placeholder="Description" name="description" [(ngModel)]="editPet.description" required
+                        minlength="3" #description="ngModel">
+                    <span *ngIf="!description.pristine && description.errors"
+                        class="d-inline-block text-danger">Description is too
+                        short</span>
+
+                </div>
+
+                <label for="skills">Pet Skills (optional)</label>
+                <div class="form-group row" id="skills">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 1</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="sk1" [(ngModel)]="editPet.skill1">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 2</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="sk2" [(ngModel)]="editPet.skill2">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="pet_skills" class="col-4 col-form-label">Skill 3</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="pet_skills" name="sk3" [(ngModel)]="editPet.skill3">
+                    </div>
+                </div>
+                <div class="btn-group" role="group">
+                    <div>
+                        <button
+                            *ngIf="name.valid && type.valid && description.valid"
+                            (click)="updatePet()" [routerLink]="['/pets', editPet._id]" type="submit"
+                            class="btn btn-primary mr-3">Submit</button>
+                        <button
+                            *ngIf="!name.valid || !type.valid || !description.valid"
+                            type="button" class="btn btn-primary mr-3 disabled">Submit</button>
+                    </div>
+                    <a [routerLink]="['/pets']"><button class="btn btn-danger ">Cancel</button> </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
